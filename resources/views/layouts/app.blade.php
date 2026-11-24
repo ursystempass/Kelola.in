@@ -178,8 +178,8 @@
 
                         <!-- Pemasukan Harian -->
                         @php
-                            $route = Route::has('pemasukan.index') ? route('pemasukan.index') : '#';
-                            $isActive = request()->routeIs('pemasukan.index');
+                            $route = Route::has('pemilik.pemasukan.index') ? route('pemilik.pemasukan.index') : '#';
+                            $isActive = request()->routeIs('pemilik.pemasukan.index', 'pemilik.pemasukan.create');
                         @endphp
                         <a href="{{ $route }}"
                             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition {{ $isActive ? 'bg-[#3B82F6] text-white shadow-md shadow-blue-500/20' : 'text-[#0F2B5C] hover:bg-[#D4E3FB]/70' }}">
@@ -193,8 +193,8 @@
 
                         <!-- Riwayat Pemasukan -->
                         @php
-                            $route = Route::has('pemasukan.riwayat') ? route('pemasukan.riwayat') : '#';
-                            $isActive = request()->routeIs('pemasukan.riwayat');
+                            $route = Route::has('pemilik.pemasukan.riwayat') ? route('pemilik.pemasukan.riwayat') : '#';
+                            $isActive = request()->routeIs('pemilik.pemasukan.riwayat', 'pemilik.pemasukan.show');
                         @endphp
                         <a href="{{ $route }}"
                             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition {{ $isActive ? 'bg-[#3B82F6] text-white shadow-md shadow-blue-500/20' : 'text-[#0F2B5C] hover:bg-[#D4E3FB]/70' }}">
@@ -252,8 +252,8 @@
 
                         <!-- Pemasukan Harian -->
                         @php
-                            $route = Route::has('pemasukan.index') ? route('pemasukan.index') : '#';
-                            $isActive = request()->routeIs('pemasukan.index');
+                            $route = Route::has('pemilik.pemasukan.index') ? route('pemilik.pemasukan.index') : '#';
+                            $isActive = request()->routeIs('pemilik.pemasukan.index');
                         @endphp
                         <a href="{{ $route }}"
                             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition {{ $isActive ? 'bg-[#3B82F6] text-white shadow-md shadow-blue-500/20' : 'text-[#0F2B5C] hover:bg-[#D4E3FB]/70' }}">
@@ -267,8 +267,8 @@
 
                         <!-- Riwayat Pemasukan -->
                         @php
-                            $route = Route::has('pemasukan.riwayat') ? route('pemasukan.riwayat') : '#';
-                            $isActive = request()->routeIs('pemasukan.riwayat');
+                            $route = Route::has('pemilik.pemasukan.riwayat') ? route('pemilik.pemasukan.riwayat') : '#';
+                            $isActive = request()->routeIs('pemilik.pemasukan.riwayat');
                         @endphp
                         <a href="{{ $route }}"
                             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition {{ $isActive ? 'bg-[#3B82F6] text-white shadow-md shadow-blue-500/20' : 'text-[#0F2B5C] hover:bg-[#D4E3FB]/70' }}">
