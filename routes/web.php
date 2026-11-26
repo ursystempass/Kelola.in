@@ -95,4 +95,6 @@ Route::middleware(['auth'])->group(function () {
         })->name('dashboard');
     });
 
+    require __DIR__.'/modules/barang.php';
+
 });

@@ -4,43 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk - Sistem Informasi Toko Sembako (Kelola.in)</title>
+    <title>Masuk - Kelola.in</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
 
 <body class="min-h-screen w-full bg-white flex flex-col lg:flex-row">
-    <!-- Kolom Kiri: Foto Rak Sembako + Overlay Putih + Branding (Disembunyikan pada layar di bawah lg) -->
-    <div class="hidden lg:flex lg:w-1/2 relative min-h-screen flex-col justify-center px-12 xl:px-20 overflow-hidden">
+    <!-- Kolom Kiri: Foto Rak Sembako + Overlay Gelap Tipis + Branding -->
+    <div class="hidden lg:flex lg:w-1/2 relative min-h-screen flex-col justify-center px-12 xl:px-14 overflow-hidden">
         <!-- Foto Latar Belakang Rak Sembako -->
         <img
-            src="{{ asset('images/login-bg.jpg') }}"
+            src="{{ asset('images/backgroundkelola.jpg') }}"
             alt="Latar Belakang Rak Toko Sembako"
             class="absolute inset-0 w-full h-full object-cover"
             onerror="this.style.display='none'; this.parentElement.classList.add('bg-slate-200');"
         >
         <!-- Overlay Putih Transparan (~45%) -->
-        <div class="absolute inset-0 bg-white/45 backdrop-blur-[0.5px]"></div>
+        <div class="absolute inset-0 bg-[#1E3A5F]/45 backdrop-blur-[0.5px]"></div>
 
         <!-- Konten Branding -->
         <div class="relative z-10 max-w-md">
             <!-- Logo Toko -->
             <div class="mb-4">
                 <img
-                    src="{{ asset('images/logo.svg') }}"
+                    src="{{ asset('images/logo.png') }}"
                     alt="Logo Kelola.in"
                     class="w-16 h-16 object-contain"
                     onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';"
                 >
-                <!-- Fallback jika file logo.svg belum diletakkan di public/images -->
+                <!-- Fallback jika file logo.png belum diletakkan di public/images -->
                 <div id="logo-fallback" class="w-16 h-16 bg-[#1A6CF0] rounded-2xl items-center justify-center shadow-md relative" style="display: none;">
                     <svg class="w-9 h-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -52,14 +54,14 @@
             </div>
 
             <!-- Teks Branding -->
-            <h1 class="text-3xl xl:text-4xl font-extrabold tracking-wide text-[#1A6CF0] mb-1">
+            <h1 class="text-3xl xl:text-4xl font-black tracking-wide text-[#1A6CF0] mb-3">
                 KELOLA.IN
             </h1>
-            <h2 class="text-lg xl:text-xl font-bold text-[#0F2F64] mb-8">
+            <h2 class="text-lg xl:text-xl font-bold text-[#FFFFFF] mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 Kelola Toko, Lebih Mudah
             </h2>
 
-            <p class="text-base xl:text-lg font-bold text-[#0F2F64] leading-snug max-w-xs">
+            <p class="text-base xl:text-lg font-normal text-[#FFFFFF] leading-snug max-w-xs drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 Solusi lengkap untuk mengelola toko Anda dengan lebih praktis dan efisien
             </p>
         </div>
@@ -67,7 +69,7 @@
 
     <!-- Kolom Kanan: Form Login -->
     <div class="w-full lg:w-1/2 min-h-screen bg-white flex flex-col items-center justify-center px-6 py-12">
-        <div class="w-full max-w-[350px]">
+        <div class="w-full max-w-[420px]">
             <!-- Judul & Subjudul Form -->
             <div class="text-center mb-7">
                 <h2 class="text-2xl sm:text-[28px] font-bold text-[#0F2B5C] tracking-tight">
@@ -111,7 +113,7 @@
 
                 <!-- Input Username / Email -->
                 <div>
-                    <label for="username" class="block text-xs font-medium text-slate-700 mb-1">
+                    <label for="username" class="block text-xs font-semibold text-slate-700 mb-1">
                         Username atau Email
                     </label>
                     <input
@@ -128,7 +130,7 @@
 
                 <!-- Input Password -->
                 <div>
-                    <label for="password" class="block text-xs font-medium text-slate-700 mb-1">
+                    <label for="password" class="block text-xs font-semibold text-slate-700 mb-1">
                         Password
                     </label>
                     <div class="relative">
@@ -180,7 +182,7 @@
                 <!-- Tombol Submit Log In -->
                 <button
                     type="submit"
-                    class="w-full h-10 mt-5 bg-[#1A6CF0] hover:bg-[#155bd0] active:bg-[#114ab0] text-white font-medium text-sm rounded-lg shadow-sm transition duration-150 flex items-center justify-center"
+                    class="w-full h-10 mt-5 bg-[#1A6CF0] hover:bg-[#155bd0] active:bg-[#114ab0] text-white font-semibold text-sm rounded-lg transition duration-150 flex items-center justify-center"
                 >
                     Log In
                 </button>
