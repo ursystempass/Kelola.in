@@ -82,8 +82,28 @@ Route::middleware(['auth'])->group(function () {
     // -------------------------------------------------------------
     Route::middleware(['role:pemilik_toko'])->prefix('pemilik')->name('pemilik.')->group(function () {
         Route::get('/dashboard', function () {
-            return view('dashboard.pemilik');
-        })->name('dashboard');
+            // Data Pemasukan untuk Dashboard Pemilik (Immanuel)
+            $pemasukanHariIni = \App\Models\Pemasukan::whereDate('tanggal', today())->sum('total_pemasukan');
+            $totalTransaksiHariIni = \App\Models\Pemasukan::whereDate('tanggal', today())->count();
+            $riwayatPemasukan = \App\Models\Pemasukan::with('user')
+                ->withCount('details')
+                ->orderByDesc('tanggal')
+                ->orderByDesc('id')
+                ->take(5)
+                ->get();
+
+            return view('dashboard.pemilik', compact(
+                'pemasukanHariIni',
+                'totalTransaksiHariIni',
+                'riwayatPemasukan'
+            ));
+        })->name('dashboard');  
+
+        // Modul RORIS (Nadrina)
+        require __DIR__.'/modules/roris.php';
+
+        // Modul Pemasukan Harian (Immanuel)
+        require __DIR__.'/modules/pemasukan.php';
     });
 
     // -------------------------------------------------------------

@@ -57,6 +57,7 @@ class PermissionSeeder extends Seeder
                 'lihat-pemasukan',
                 'lihat-laporan-pemasukan',
                 'lihat-barang',
+                'kelola-roris',
                 'lihat-laporan-roris',
             ])->pluck('id')->toArray();
 
