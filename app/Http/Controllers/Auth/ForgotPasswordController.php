@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OtpResetPasswordMail;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -58,14 +59,19 @@ class ForgotPasswordController extends Controller
                 ]
             );
 
-            // Kirim email dan tangkap error agar kegagalan mailer tidak memunculkan error teknis ke pengguna
+            // Kirim OTP ke email pengguna melalui Mailable dan tangkap error mailer
             try {
-                Mail::raw(
-                    "Kode OTP reset kata sandi Kelola.in: {$otpCode}. Berlaku 10 menit. Jangan berikan kode ini kepada siapa pun.",
-                    fn ($message) => $message->to($user->email)->subject('Kode OTP Reset Kata Sandi - Kelola.in')
+                Mail::to($user->email)->send(
+                    new OtpResetPasswordMail($user, $otpCode, self::OTP_LIFETIME_MINUTES)
                 );
             } catch (\Throwable $e) {
                 report($e);
+
+                DB::table('password_reset_tokens')->where('email', $user->email)->delete();
+
+                return back()->withErrors([
+                    'username' => 'Gagal mengirim email OTP. Silakan periksa koneksi atau konfigurasi email lalu coba lagi.',
+                ])->withInput($request->only('username'));
             }
         }
 
