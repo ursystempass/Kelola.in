@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Pemilik;
 
 use App\Http\Controllers\Controller;
 use App\Models\Roris;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanRorisExport;
@@ -54,45 +53,6 @@ class LaporanRorisController extends Controller
             'validated',
             'errors'
         ));
-    }
-
-    /**
-     * Cetak laporan RORIS dalam format PDF.
-     */
-    public function pdf(Request $request)
-    {
-        $this->authorizePermission('lihat-laporan-roris');
-
-        $dari = $request->dari ?? null;
-        $sampai = $request->sampai ?? null;
-
-        if (!$dari || !$sampai || $dari > $sampai) {
-            return redirect()->route('pemilik.roris.laporan')
-                ->withErrors(['dari' => 'Periode tidak valid untuk cetak PDF.']);
-        }
-
-        $rorisList = Roris::with(['user', 'details'])
-            ->whereDate('tanggal', '>=', $dari)
-            ->whereDate('tanggal', '<=', $sampai)
-            ->orderBy('tanggal')
-            ->get();
-
-        $totalModal = $rorisList->sum('total_modal');
-        $totalPendapatan = $rorisList->sum('total_pendapatan');
-        $nilaiRoris = $rorisList->sum('nilai_roris');
-
-        $pdf = Pdf::loadView('pemilik.laporan-roris.pdf', compact(
-            'rorisList',
-            'totalModal',
-            'totalPendapatan',
-            'nilaiRoris',
-            'dari',
-            'sampai'
-        ))->setPaper('a4', 'landscape');
-
-        $filename = 'Laporan_RORIS_' . $dari . '_sd_' . $sampai . '.pdf';
-
-        return $pdf->download($filename);
     }
 
     /**

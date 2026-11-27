@@ -15,12 +15,12 @@
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <a href="{{ url('/') }}" class="w-10 h-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl flex items-center justify-center font-bold shadow-md shadow-emerald-500/20 transition">
+                <a href="{{ url('/') }}" class="w-10 h-10 bg-[#1A6CF0] hover:bg-emerald-700 text-white rounded-xl flex items-center justify-center font-bold shadow-md shadow-emerald-500/20 transition">
                     K
                 </a>
                 <div>
                     <h1 class="text-base font-bold text-slate-800 leading-tight">Kelola.in</h1>
-                    <span class="text-xs text-emerald-600 font-semibold tracking-wide uppercase">Pengaturan Profil Akun</span>
+                    <span class="text-xs text-[#1A6CF0] font-semibold tracking-wide uppercase">Pengaturan Profil Akun</span>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
         <!-- Header Profil -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div class="flex items-center gap-5">
-                <div class="w-16 h-16 rounded-2xl bg-emerald-600 text-white font-bold flex items-center justify-center text-xl uppercase shadow-lg shadow-emerald-600/20">
+                <div class="w-16 h-16 rounded-2xl bg-[#1A6CF0] text-white font-bold flex items-center justify-center text-xl uppercase shadow-lg shadow-[#1A6CF0]/20">
                     {{ substr($user->name, 0, 2) }}
                 </div>
                 <div>
@@ -153,7 +153,7 @@
                         <div class="pt-2">
                             <button
                                 type="submit"
-                                class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm rounded-xl shadow-md shadow-emerald-600/20 transition"
+                                class="w-full py-2.5 px-4 bg-[#1A6CF0] hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm rounded-xl shadow-md shadow-emerald-600/20 transition"
                             >
                                 Simpan Informasi Profil
                             </button>

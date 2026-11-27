@@ -121,7 +121,7 @@
                                         </td>
                                         <td
                                             class="px-5 py-3 text-right font-bold
-                                                                                                        {{ $r->nilai_roris >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
+                                                                                                                        {{ $r->nilai_roris >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
                                             Rp {{ number_format($r->nilai_roris, 0, ',', '.') }}
                                         </td>
                                         <td class="px-5 py-3 text-center">
