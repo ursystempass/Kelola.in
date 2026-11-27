@@ -15,8 +15,8 @@ Route::middleware(['auth'])->group(function () {
                 ->except(['show']);
         });
 
-    // Modul Kelola Data Barang (Karyawan & Pemilik Toko)
-    Route::middleware(['role:pemilik,karyawan'])->group(function () {
+    // Modul Kelola Data Barang (Pemilik Toko & Karyawan)
+    Route::middleware(['role:pemilik_toko,karyawan'])->group(function () {
         Route::resource('barang', BarangController::class)
             ->except(['show']);
     });

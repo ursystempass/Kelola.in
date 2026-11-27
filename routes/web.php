@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Pemilik\RorisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Halaman utama: jika belum login arahkan ke login, jika sudah login arahkan sesuai role
 Route::get('/', function () {
-    if (! Auth::check()) {
+    if (!Auth::check()) {
         return redirect()->route('login');
     }
 
@@ -29,7 +30,7 @@ Route::get('/', function () {
 });
 
 // 1. Modul Autentikasi & Hak Akses (Fadilah)
-require __DIR__.'/modules/auth.php';
+require __DIR__ . '/modules/auth.php';
 
 // 2. Rute Terproteksi Sesi (Harus Login)
 Route::middleware(['auth'])->group(function () {
@@ -50,9 +51,9 @@ Route::middleware(['auth'])->group(function () {
 
             // Ringkasan sistem: jumlah user per peran (Admin, Pemilik Toko, Karyawan)
             $roleCounts = [
-                'admin' => \App\Models\User::whereHas('role', fn ($q) => $q->where('slug', 'admin'))->count(),
-                'pemilik_toko' => \App\Models\User::whereHas('role', fn ($q) => $q->where('slug', 'pemilik_toko'))->count(),
-                'karyawan' => \App\Models\User::whereHas('role', fn ($q) => $q->where('slug', 'karyawan'))->count(),
+                'admin' => \App\Models\User::whereHas('role', fn($q) => $q->where('slug', 'admin'))->count(),
+                'pemilik_toko' => \App\Models\User::whereHas('role', fn($q) => $q->where('slug', 'pemilik_toko'))->count(),
+                'karyawan' => \App\Models\User::whereHas('role', fn($q) => $q->where('slug', 'karyawan'))->count(),
             ];
 
             // Aktivitas terbaru: 5 user yang terakhir dibuat
@@ -97,13 +98,13 @@ Route::middleware(['auth'])->group(function () {
                 'totalTransaksiHariIni',
                 'riwayatPemasukan'
             ));
-        })->name('dashboard');  
+        })->name('dashboard');
 
         // Modul RORIS (Nadrina)
-        require __DIR__.'/modules/roris.php';
+        require __DIR__ . '/modules/roris.php';
 
         // Modul Pemasukan Harian (Immanuel)
-        require __DIR__.'/modules/pemasukan.php';
+        require __DIR__ . '/modules/pemasukan.php';
     });
 
     // -------------------------------------------------------------
@@ -115,6 +116,6 @@ Route::middleware(['auth'])->group(function () {
         })->name('dashboard');
     });
 
-    require __DIR__.'/modules/barang.php';
+    require __DIR__ . '/modules/barang.php';
 
 });

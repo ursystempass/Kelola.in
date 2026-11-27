@@ -93,7 +93,7 @@
                             </td>
                             <td
                                 class="px-5 py-3.5 text-right font-bold
-                                                                            {{ $roris->nilai_roris >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
+                                                                                                                                                    {{ $roris->nilai_roris >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
                                 Rp {{ number_format($roris->nilai_roris, 0, ',', '.') }}
                             </td>
                             <td class="px-5 py-3.5 text-center">
@@ -106,6 +106,21 @@
                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
                                 </a>
+                                <a href="{{ route('pemilik.roris.edit', $roris) }}"
+                                    class="inline-flex items-center justify-center w-8 h-8 bg-amber-50 hover:bg-amber-100 text-amber-600 rounded-lg transition"
+                                    title="Edit RORIS">
+                                    Edit
+                                </a>
+                                <form action="{{ route('pemilik.roris.destroy', $roris) }}" method="POST" class="inline-block"
+                                    onsubmit="return confirm('Apakah kamu yakin ingin menghapus data RORIS ini beserta seluruh rinciannya?')">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit"
+                                        class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition text-xs font-medium">
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
