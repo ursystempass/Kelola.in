@@ -19,12 +19,27 @@ use Illuminate\Support\Facades\Route;
 // ── Riwayat & Input RORIS (SKPL-F-12, F-13) ──────────────────────────────────
 Route::get('/roris', [RorisController::class, 'index'])->name('roris.index');
 Route::get('/roris/tambah', [RorisController::class, 'create'])->name('roris.create');
+
 Route::post('/roris', [RorisController::class, 'store'])->name('roris.store');
-Route::get('/roris/{roris}', [RorisController::class, 'show'])->name('roris.show');
+
+// Edit RORIS
+Route::get('/roris/{roris}/edit', [RorisController::class, 'edit'])
+    ->name('roris.edit');
+
+// Update RORIS
+Route::put('/roris/{roris}', [RorisController::class, 'update'])
+    ->name('roris.update');
+
+// Hapus RORIS
+Route::delete('/roris/{roris}', [RorisController::class, 'destroy'])
+    ->name('roris.destroy');
+
+// Detail RORIS
+Route::get('/roris/{roris}', [RorisController::class, 'show'])
+    ->name('roris.show');
 
 // ── Laporan RORIS (SKPL-F-14) ─────────────────────────────────────────────────
 Route::get('/laporan-roris', [LaporanRorisController::class, 'index'])->name('roris.laporan');
-Route::get('/laporan-roris/pdf', [LaporanRorisController::class, 'pdf'])->name('roris.laporan.pdf');
 Route::get('/laporan-roris/excel', [LaporanRorisController::class, 'excel'])->name('roris.laporan.excel');
 
 // ── Endpoint Grafik RORIS untuk Dashboard Pemilik (SKPL-F-19) ────────────────
