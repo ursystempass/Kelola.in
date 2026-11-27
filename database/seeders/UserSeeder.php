@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Pemilik Toko',
                 'username' => 'pemilik',
-                'email' => 'pemilik@kelolain.com',
+                'email' => 'rizkykelola@gmail.com',
                 'password' => Hash::make('password123'),
                 'role_id' => $pemilikRole?->id,
                 'is_active' => true,
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Karyawan Kasir',
                 'username' => 'karyawan',
-                'email' => 'karyawan@kelolain.com',
+                'email' => 'karyawankelola@gmail.com',
                 'password' => Hash::make('password123'),
                 'role_id' => $karyawanRole?->id,
                 'is_active' => true,
@@ -46,10 +46,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $userData) {
-            // firstOrCreate: mencari akun berdasarkan username
-            // 1. Jika data belum ada: Akun baru dibuat dengan password yang di-hash.
-            // 2. Jika data sudah ada: Record tidak diubah sama sekali, sehingga
-            //    password yang sudah diganti oleh pengguna TIDAK AKAN tertimpa kembali.
+
             User::firstOrCreate(
                 ['username' => $userData['username']],
                 [
@@ -61,5 +58,9 @@ class UserSeeder extends Seeder
                 ]
             );
         }
+
+        User::where('username', 'pemilik')
+            ->where('email', 'pemilik@kelolain.com')
+            ->update(['email' => 'rizkykelola@gmail.com']);
     }
 }
